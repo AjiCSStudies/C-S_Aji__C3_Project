@@ -6,6 +6,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,6 +72,24 @@ class RestaurantTest {
     public void removing_item_that_does_not_exist_should_throw_exception() {
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
+    }
+    @Test
+    public void total_order_value_should_return_zero_if_no_item_is_selected(){
+        List<String> itemsSelected = new ArrayList<>();
+        assertEquals(0,restaurant.getSelectedItemTotal(itemsSelected));
+    }
+    @Test
+    public void total_order_value_should_return_for_1_item_selected(){
+        List<String> itemsSelected = new ArrayList<>();
+        itemsSelected.add("Sweet corn soup");
+        assertEquals(119,restaurant.getSelectedItemTotal(itemsSelected));
+    }
+    @Test
+    public void total_order_value_should_return_for_all_item_selected(){
+        List<String> itemsSelected = new ArrayList<>();
+        itemsSelected.add("Sweet corn soup");
+        itemsSelected.add("Vegetable lasagne");
+        assertEquals(388,restaurant.getSelectedItemTotal(itemsSelected));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
