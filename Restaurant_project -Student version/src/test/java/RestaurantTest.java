@@ -74,19 +74,19 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     @Test
-    public void total_order_value_should_return_zero_if_no_item_is_selected(){
-        List<String> itemsSelected = new ArrayList<>();
+    public void get_selected_item_total_should_return_zero_if_no_item_is_selected(){
+        List<String> itemsSelected = new ArrayList<String>();
         assertEquals(0,restaurant.getSelectedItemTotal(itemsSelected));
     }
     @Test
-    public void total_order_value_should_return_for_1_item_selected(){
-        List<String> itemsSelected = new ArrayList<>();
+    public void get_selected_item_total_should_return_1_item_total_if_1_item_is_selected(){
+        List<String> itemsSelected = new ArrayList<String>();
         itemsSelected.add("Sweet corn soup");
         assertEquals(119,restaurant.getSelectedItemTotal(itemsSelected));
     }
     @Test
-    public void total_order_value_should_return_for_all_item_selected(){
-        List<String> itemsSelected = new ArrayList<>();
+    public void get_selected_item_total_should_return_item_total_of_all_items_selected(){
+        List<String> itemsSelected = new ArrayList<String>();
         itemsSelected.add("Sweet corn soup");
         itemsSelected.add("Vegetable lasagne");
         assertEquals(388,restaurant.getSelectedItemTotal(itemsSelected));
