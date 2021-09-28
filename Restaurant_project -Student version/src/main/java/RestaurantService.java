@@ -5,9 +5,12 @@ import java.util.List;
 public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
 
-    public Restaurant findRestaurantByName(String restaurantName){
-        return null;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+    public Restaurant findRestaurantByName(String restaurantName) throws restaurantNotFoundException{
+        for (Restaurant restaurant : this.getRestaurants()) {
+            if (restaurant.getName().equals(restaurantName))
+                return restaurant;
+        }
+        throw new restaurantNotFoundException(restaurantName);
     }
 
 
@@ -25,5 +28,9 @@ public class RestaurantService {
 
     public List<Restaurant> getRestaurants() {
         return restaurants;
+    }
+
+    public void deleteAllRestaurants(){
+        restaurants = new ArrayList<>();
     }
 }
